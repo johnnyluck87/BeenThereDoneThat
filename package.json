@@ -1,0 +1,34 @@
+{
+  "name": "beentheredonethat",
+  "version": "1.0.0",
+  "description": "helpful app",
+  "main": "server.js",
+  "dependencies": {
+    "express-handlebars": "^3.0.0",
+    "geolocation": "^0.2.0",
+    "google-maps-api": "^2.0.1",
+    "lodash": "^4.12.0",
+    "method-override": "^2.3.5",
+    "nonce": "^1.0.3",
+    "oauth-signature": "^1.3.1",
+    "querystring": "^0.2.0",
+    "request": "^2.72.0",
+    "save": "^2.3.0",
+    "yelp": "^1.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnnyluck87/BeenThereDoneThat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnnyluck87/BeenThereDoneThat/issues"
+  },
+  "homepage": "https://github.com/johnnyluck87/BeenThereDoneThat#readme"
+}
