@@ -15,7 +15,7 @@ var app = express();
 app.use(session({ secret: 'app', cookie: { maxAge: 60000 }}));
 app.use(cookieParser());
 
-//Serve static content for the app from the "public" directory in the application directory.
+//Serve static content for the app from the "public" directory in the applibtdtion directory.
 app.use(express.static(process.cwd() + '/public'));
 
 app.use(bodyParser.urlencoded({
@@ -29,10 +29,10 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-var cats_controller = require('./controllers/cats_controller.js');
+var btdts_controller = require('./controllers/btdts_controller.js');
 var users_controller = require('./controllers/users_controller.js');
 
-app.use('/', cats_controller);
+app.use('/', btdts_controller);
 app.use('/', users_controller);
 
 

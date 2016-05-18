@@ -1,7 +1,7 @@
 ### Schema
 
-CREATE DATABASE cat_db;
-USE cat_db;
+CREATE DATABASE btdt_db;
+USE btdt_db;
 
 CREATE TABLE users
 (
@@ -12,12 +12,15 @@ CREATE TABLE users
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE cats
-(
-	id int NOT NULL AUTO_INCREMENT,
+
+
+CREATE TABLE places_already_gone (
 	user_id int NOT NULL,
-	name varchar(255) NOT NULL,
-	sleepy BOOLEAN DEFAULT false,
-	PRIMARY KEY (id),
-	FOREIGN KEY (user_id) REFERENCES users(id)
-);
+	yelp_id varchar(128) NOT NULL
+	PRIMARY KEY (user_id, yelp_id)
+)
+-- when you insert in lat/long it will quicky be able to search for a point on  map
+-- Look Google Maps Adress LookUP plugin, address lookup serach and authcompletes addresses
+--the GPS info will not be stored because it will be changed each session, instead we can 
+-- override each time someone has been to a place
+

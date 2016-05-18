@@ -11,7 +11,7 @@ var source = {
         host: 'localhost',
         user: 'root',
         password: "",
-        database: "cat_db"
+        database: "btdt_db"
     }
 }
 

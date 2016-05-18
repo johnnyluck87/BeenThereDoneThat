@@ -5,7 +5,7 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
 
-var Cat = require('../models/models.js')[0];
+var BTDT = require('../models/models.js')[0];
 var User = require('../models/models.js')[1];
 
 //this is the users_controller.js file
@@ -19,7 +19,7 @@ router.get('/users/sign-in', function(req,res) {
 
 router.get('/users/sign-out', function(req,res) {
   req.session.destroy(function(err) {
-     res.redirect('/cats')
+     res.redirect('/btdts')
   })
 });
 
@@ -37,7 +37,7 @@ router.post('/users/login', function(req, res) {
           req.session.user_email = user.email;
           req.session.username = user.username;
 
-          res.redirect('/cats');
+          res.redirect('/btdts');
         }
     });
   })
@@ -64,7 +64,7 @@ router.post('/users/create', function(req,res) {
 							req.session.user_id = user.id;
 							req.session.user_email = user.email;
 							req.session.username = user.username;
-							res.redirect('/cats')
+							res.redirect('/btdts')
 						});
 					});
 			});

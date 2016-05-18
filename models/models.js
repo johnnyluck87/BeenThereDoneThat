@@ -2,23 +2,23 @@ var Sequelize = require("sequelize");
 
 var sequelizeConnection = require("../config/connection.js");
 
-// Creates a "Cat" model that matches up with DB
-var Cat = sequelizeConnection.define("cats", {
-	id: {
-		type: Sequelize.INTEGER,
-		autoIncrement: true,
-		primaryKey: true
-	},
-	user_id: {
-		type: Sequelize.INTEGER
-	},
-	name: {
-		type: Sequelize.STRING
-	},
-	sleepy: {
-		type: Sequelize.BOOLEAN
-	}
-});
+// Creates a "btdt" model that matches up with DB
+// var btdt = sequelizeConnection.define("btdts", {
+// 	id: {
+// 		type: Sequelize.INTEGER,
+// 		autoIncrement: true,
+// 		primaryKey: true
+// 	},
+// 	user_id: {
+// 		type: Sequelize.INTEGER
+// 	},
+// 	name: {
+// 		type: Sequelize.STRING
+// 	},
+// 	sleepy: {
+// 		type: Sequelize.BOOLEAN
+// 	}
+// });
 
 var User = sequelizeConnection.define("users", {
 	id: {
@@ -40,13 +40,13 @@ var User = sequelizeConnection.define("users", {
 	underscored: true
 });
 
-// looking up the best way to do this
-Cat.belongsTo(User, {foreignKey: 'user_id'});
-User.hasMany(Cat, {foreignKey: 'id'});
+// // looking up the best way to do this
+// btdt.belongsTo(User, {foreignKey: 'user_id'});
+// User.hasMany(btdt, {foreignKey: 'id'});
 
-// Syncs with DB
-Cat.sync();
-User.sync();
+// // Syncs with DB
+// btdt.sync();
+// User.sync();
 
-// Makes the Cat Model available for other files (will also create a table)
-module.exports = [Cat, User];
+// Makes the btdt Model available for other files (will also create a table)
+module.exports = [User];
