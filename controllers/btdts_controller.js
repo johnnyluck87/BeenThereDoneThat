@@ -1,3 +1,5 @@
+// I need help with the api before I go further
+
 /*
 Here is where you create all the functions that will do the routing for your app, and the logic of each route.
 */
@@ -23,6 +25,24 @@ router.get('/btdts', function(req,res) {
 		res.render('btdts/steponehandlebars', hbsObject);
 	})
 });
+
+///	NEED TO DOUBLE CHECK WHAT API WE WILL BE USING FOR THIS. THIS IS JUST A SAMPLE, SO WE CAN HAVE 
+//IN MEANTIME. This is for updating the page based onthe users search in yelp
+router.put('/btdts/update/:user_id', function(req,res) {
+	btdt.update({
+		yelp_id: req.body
+  },
+  {
+		where: { user_id : req.params.id }
+	}
+	).then(function (result) {
+		res.redirect('/btdts');
+  }, function(rejectedPromiseError){
+		console.log(rejectedPromiseError);
+  });
+});
+
+
 
 // ///This is for creating a cat. We don't need this
 // router.post('/btdts/create', function(req,res) {

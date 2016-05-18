@@ -1,5 +1,9 @@
 
 <!-- Template For Been There Done That, for Step 2-->
+<ul>
+  {{#each btdts}}
+    {{#if this.yelp_id}}
+     
 
 
 <div class="container-fluid">
@@ -63,3 +67,8 @@
 		</div>
 	</div>
 </div>
+
+
+    {{/if}}
+  {{/each}}
+</ul>

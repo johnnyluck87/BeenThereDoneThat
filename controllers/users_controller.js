@@ -5,7 +5,7 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
 
-var BTDT = require('../models/models.js')[0];
+var btdt = require('../models/models.js')[0];
 var User = require('../models/models.js')[1];
 
 //this is the users_controller.js file

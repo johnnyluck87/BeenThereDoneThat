@@ -13,8 +13,8 @@ CREATE TABLE users
 );
 
 
-
-CREATE TABLE places_already_gone (
+-- double check YELP API for ratings to use the API
+CREATE TABLE btdts (
 	user_id int NOT NULL,
 	yelp_id varchar(128) NOT NULL
 	PRIMARY KEY (user_id, yelp_id)

@@ -3,6 +3,16 @@
 
 <h1>Been There Done That!</h1>
 
+{{#if username}}
+  Welcome {{username}}! Let's work on where to go.
+{{/if}}
+
+{{#unless logged_in}}
+  <p> Sign up to find out where to go next! </p>
+{{/unless}}
+
+{{#if logged_in}}
+
 
 <form class="form-horizontal" action="/search" method="GET">
 <fieldset>
@@ -53,7 +63,7 @@
 </fieldset>
 </form>
 
-
+{{/if}}
 
 
 
