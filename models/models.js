@@ -41,8 +41,8 @@ var User = sequelizeConnection.define("users", {
 });
 
 // looking up the best way to do this
-// Cat.belongsTo(User, {foreignKey: 'user_id'});
-// User.hasMany(Cat, {foreignKey: 'id'});
+Cat.belongsTo(User, {foreignKey: 'user_id'});
+User.hasMany(Cat, {foreignKey: 'id'});
 
 // Syncs with DB
 Cat.sync();

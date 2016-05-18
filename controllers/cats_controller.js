@@ -27,7 +27,7 @@ router.post('/cats/create', function(req,res) {
 		name: req.body.name,
 		sleepy: req.body.sleepy,
 		user_id: req.session.user_id
-	}).then(function(result){
+	}).then(function(newlyCreatedCat){
 		res.redirect('/cats')
 	});
 });
@@ -47,13 +47,27 @@ router.put('/cats/update/:id', function(req,res) {
 });
 
 router.delete('/cats/delete/:id', function(req,res) {
-	Cat.destroy({
-    where: { id : req.params.id }
-	}).then(function (result) {
-		res.redirect('/cats');
-  }, function(rejectedPromiseError){
-		console.log(rejectedPromiseError);
-  });
+	if (req.session.logged_in){
+		//check if cat belongs to user then let user delete cat
+		Cat.findAll({
+	    where: {$and: [{user_id: req.session.user_id}, {id: req.params.id}]}
+	  }).then(function(cats) {
+			if (cats.length > 0){
+				Cat.destroy({
+					where: { id : req.params.id }
+				}).then(function (result) {
+					res.redirect('/cats');
+				}, function(rejectedPromiseError){
+					console.log(rejectedPromiseError);
+				});
+			}else{
+				res.send("sorry you can't delete that cat.");
+			}
+		});
+	}else {
+		res.send("sorry you can't do that. You need to be logged in");
+	}
+
 });
 
 module.exports = router;
