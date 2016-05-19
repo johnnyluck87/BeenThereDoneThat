@@ -15,9 +15,14 @@ CREATE TABLE users
 
 -- double check YELP API for ratings to use the API
 CREATE TABLE btdts (
-	user_id int NOT NULL,
-	yelp_id varchar(128) NOT NULL
-	PRIMARY KEY (user_id, yelp_id)
+	id varchar (128) NOT NULL
+	name varchar(128) NOT NULL,
+	rating_img_url varchar(2000) ,
+	snippet_text varchar(2000),
+	categories varchar(2000),
+	image_url varchar (2000),
+	url varchar (2000),
+	PRIMARY KEY (id)
 )
 -- when you insert in lat/long it will quicky be able to search for a point on  map
 -- Look Google Maps Adress LookUP plugin, address lookup serach and authcompletes addresses

@@ -40,6 +40,12 @@ var User = sequelizeConnection.define("users", {
 	underscored: true
 });
 
+
+var btdt = sequelizeConnection.define("users", {
+
+
+username: {
+		type: Sequelize.STRING,
 // // looking up the best way to do this
 // btdt.belongsTo(User, {foreignKey: 'user_id'});
 // User.hasMany(btdt, {foreignKey: 'id'});
