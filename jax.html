@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>pok</title>
+
+</head>
+<body>
+<form>
+  Location:<br>
+  <input type="text" name="location" placeholder="use my current location"><br>
+  <button>find</button>
+</form>
+<div id="test"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+$('button').on('click', function(){
+
+
+    $.ajax({
+        url: 'http://localhost:3000/',
+        dataType: "jsonp",
+        jsonpCallback: "_testcb",
+        cache: false,
+        timeout: 5000,
+        success: function(data) {
+            $("#test").append(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('error ' + textStatus + " " + errorThrown);
+        }
+    });
+});
+
+
+
+
+
+
+
+
+
+
+	// var query2URL = "/";
+	
+	// $.ajax({url: query2URL, method: 'GET'}).done(function(response2){
+ //      // Prints the entire object to console
+ //      console.log(response2);
+
+ //  	});
+  	return false;
+});
+
+
+
+
+</script>
+
+</body>
+</html>

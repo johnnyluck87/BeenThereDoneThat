@@ -2,63 +2,68 @@
 <html>
   <head>
     <title>Geolocation</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-    </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   </head>
   <body>
-    <div id="map"></div>
+    <button id="ro">touch</button>
+    <div id="yo">
+
+
+
+
+
+    </div>
     <script>
-      // Note: This example requires that you consent to location sharing when
-      // prompted by your browser. If you see the error "The Geolocation service
-      // failed.", it means you probably did not give permission for the browser to
-      // locate you.
+    $('#ro').hide()
+ var pos = "";
+ var arrpos = []
 
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 6
-        });
-        var infoWindow = new google.maps.InfoWindow({map: map});
-
-        // Try HTML5 geolocation.
+        // HTML5 geolocation.
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
+            pos = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
+             $('#ro').show()
+            // arrpos.push(pos)
             console.log(pos)
+            // json(arrpos)
+            var data = pos
+            // data.ready($('#ro').show())
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
+           // $('#yo').append('
+           //  <form action="main.html" method="get">
+           //  Last name:<br>
+           //  <input type="text" name="lastname" value=""><br><br>
+           //  <input type="submit" value="Submit">
+           //  </form>')
+
+
+
+
+
+
+              $('#ro').on('click', function(){
+                       var currentURL = window.location.origin;
+                       console.log(data)
+
+                      // AJAX post the data to the friends API. 
+                       $.post(currentURL + "/api/loc",data, function(data){
+                        console.log(data)
+                       alert('hello')
+
+                      });
+
+                 window.location.replace(currentURL+"/api");
+              })
+          })
         }
-      }
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-      }
+
     </script>
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA32ZoqMzaSzODIPGhEVeZsU1rahWLTOyY&callback=initMap"
-    async defer></script>
+   
   </body>
 </html>
