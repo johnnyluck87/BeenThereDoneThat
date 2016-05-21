@@ -24,6 +24,20 @@ CREATE TABLE btdts (
 	url varchar (2000),
 	PRIMARY KEY (id)
 )
+
+
+create table gps(
+
+    latitude varchar (128)
+    longitude varchar (128),
+    country: varchar (128),
+    countryCode: varchar (128),
+    city: varchar (128),
+    zipcode: varchar (128),
+    streetName: varchar (128),
+    streetNumber: varchar (128),
+
+)
 -- when you insert in lat/long it will quicky be able to search for a point on  map
 -- Look Google Maps Adress LookUP plugin, address lookup serach and authcompletes addresses
 --the GPS info will not be stored because it will be changed each session, instead we can 

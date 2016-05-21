@@ -14,22 +14,31 @@
 {{#if logged_in}}
 
 
-<form class="form-horizontal" action="/search" method="GET">
+<!-- <form class="form-horizontal" action="/search" method="GET"> -->
 <fieldset>
 
 <!-- Form Name -->
 <legend>Form Name</legend>
 
-<!-- Search input-->
+<!-- First Question: Please type in a location-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="What is your current location?">What is your current location?</label>
+  <label class="col-md-4 control-label" for="Please type in a location or click GPS Locate Me, so we can help find places for you">Please type in a location or click GPS Locate Me, so we can help find places for you</label>
   <div class="col-md-4">
-    <input id="What is your current location?" name="What is your current location?" type="search" placeholder="" class="form-control input-md">
-    
+    <input id="location" name="What is your current location?" type="search" placeholder="" class="form-control input-md">
+ 
+    <!-- How do you update the gps location box based on where someone is? For example, if they clicked GPS Locate Me it will push the search result into that box -->
+    <!-- We also need to update the AJAX Call here, so we would update correct? -->
+
+     <button id="gpslocateme" name="gpslocateme" class="btn btn-primary">GPS Locate Me</button>
+  
+<!-- Sample AJAX -->
+<!-- Is this the correct way to update the lat and long? or should we convert this to address? We need to also put in the AJAX Call here -->
+ <form action="gpss/update/{{this.lat, this.long}}?_method=PUT" method="POST">
+
   </div>
 </div>
 
-<!-- Text input-->
+<!-- Second Question: Please select a place you want to go-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Select a place that you want to go to.</label>  
   <div class="col-md-4">
@@ -44,7 +53,7 @@
   </div>
 </div>
 
-<!-- Select Basic -->
+<!-- Third Question: How far are you willing to travel?-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="selectbasic">How far are you willing to travel (miles)?</label>
   <div class="col-md-4">
@@ -62,7 +71,12 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="singlebutton"></label>
   <div class="col-md-4">
+
+  <!-- Not sure how we link both AJAX together. We would update the YELP -->
     <button id="singlebutton" name="singlebutton" class="btn btn-primary">Search</button>
+      
+ 
+
   </div>
 </div>
 

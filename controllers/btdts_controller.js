@@ -5,94 +5,118 @@ Here is where you create all the functions that will do the routing for your app
 */
 var express = require('express');
 var router = express.Router();
-
-var btdt = require('../models/models.js')[0];
-var User = require('../models/models.js')[1];
-
-router.get('/', function(req,res) {
-	res.redirect('/btdts')
-});
+var btdt = require('../models/btdt.js');
+var geocoder = require('node-geocoder');
 
 
 //check the login for someone
-router.get('/btdts', function(req,res) {
-	btdt.findAll({}).then(function(result){
+router.get('/', function(req,res) {
+	btdt.all(function(data){
 		var hbsObject = {
-			btdts : result,
-			logged_in : req.session.logged_in,
-			username : req.session.username
+			btdts : data,
+			logged_in: req.session.logged_in
 		}
-		res.render('btdts/steponehandlebars', hbsObject);
-	})
+		console.log(hbsObject)
+		res.render('index', hbsObject);
+	});
 });
 
-///	NEED TO DOUBLE CHECK WHAT API WE WILL BE USING FOR THIS. THIS IS JUST A SAMPLE, SO WE CAN HAVE 
-//IN MEANTIME. This is for updating the page based onthe users search in yelp
-router.put('/btdts/update/:user_id', function(req,res) {
-	btdt.update({
-		yelp_id: req.body
-  },
-  {
-		where: { user_id : req.params.id }
-	}
-	).then(function (result) {
+///This would be Step One
+//So would I put the API for the distance for google maps?
+router.post('/create', function(req,res) {
+	btdt.create(['location', 'place', 'distance'], [req.body.location, req.body.place, req.body.distance], function(data){
+		res.redirect('/btdts')
+	});
+});
+
+
+//Step Two
+
+//Update the ID
+router.put('/update/:id', function(req,res) {
+	// var condition = 'id = ' + req.params.id;
+
+	// console.log('condition', condition);
+// THis is calling from the YELP API to update the ID. 
+//So would we put the for loop here?
+	btdt.update({'id'}, function(data){
 		res.redirect('/btdts');
-  }, function(rejectedPromiseError){
-		console.log(rejectedPromiseError);
-  });
+	});
 });
 
 
+//Update the snippet text
+router.put('/update/:snippet_text', function(req,res) {
+	// var condition = 'id = ' + req.params.id;
 
-// ///This is for creating a cat. We don't need this
-// router.post('/btdts/create', function(req,res) {
-// 	btdt.create({
-// 		name: req.body.name,
-// 		sleepy: req.body.sleepy,
-// 		user_id: req.session.user_id
-// 	}).then(function(newlyCreatedbtdt){
-// 		res.redirect('/btdts')
+	// console.log('condition', condition);
+
+	// THis is calling from the YELP API to update the ID. 
+//So would we put the for loop here?
+
+	btdt.update({'snippet_text' : req.body.snippet_text}, condition, function(data){
+		res.redirect('/btdts');
+	});
+});
+
+
+//Update the ratings
+router.put('/update/:rating_img_url', function(req,res) {
+	// var condition = 'id = ' + req.params.id;
+
+	// console.log('condition', condition);
+
+	// THis is calling from the YELP API to update the ID. 
+//So would we put the for loop here?
+
+	btdt.update({'snippet_rating_img_url' : req.body.snippet_rating_img_url}, condition, function(data){
+		res.redirect('/btdts');
+	});
+});
+
+
+//Update the image
+router.put('/update/:image_url', function(req,res) {
+	// var condition = 'id = ' + req.params.id;
+
+	// console.log('condition', condition);
+
+	// THis is calling from the YELP API to update the ID. 
+//So would we put the for loop here?
+
+	btdt.update({'image_url' : req.body.image_url}, condition, function(data){
+		res.redirect('/btdts');
+	});
+});
+
+
+//Update the URL
+router.put('/update/:url', function(req,res) {
+	// var condition = 'id = ' + req.params.id;
+
+	// console.log('condition', condition);
+
+	// THis is calling from the YELP API to update the ID. 
+//So would we put the for loop here?
+
+	btdt.update({'url' : req.body. url}, condition, function(data){
+		res.redirect('/btdts');
+	});
+});
+
+//Do we need update? I made this just in case. Because essentially 
+// //the user can just reload the page correct?
+
+
+// //Do we need delete? Since essentially the user would be logged 
+// //into another page?
+// router.delete('/delete/:id', function(req,res) {
+// 	var condition = 'id = ' + req.params.id;
+
+// 	btdt.delete(condition, function(data){
+// 		res.redirect('/btdts');
 // 	});
 // });
 
-// ///This was for updating the cat if this cat was sleepy or not. We don't need this 
-// router.put('/btdts/update/:id', function(req,res) {
-// 	btdt.update({
-// 		sleepy: req.body.sleepy
-//   },
-//   {
-// 		where: { id : req.params.id }
-// 	}
-// 	).then(function (result) {
-// 		res.redirect('/btdts');
-//   }, function(rejectedPromiseError){
-// 		console.log(rejectedPromiseError);
-//   });
-// });
-
-// //This was for deleting the cat. We don't need this.
-// router.delete('/btdts/delete/:id', function(req,res) {
-// 	if (req.session.logged_in){
-// 		//check if btdt belongs to user then let user delete btdt
-// 		btdt.findAll({
-// 	    where: {$and: [{user_id: req.session.user_id}, {id: req.params.id}]}
-// 	  }).then(function(btdts) {
-// 			if (btdts.length > 0){
-// 				btdt.destroy({
-// 					where: { id : req.params.id }
-// 				}).then(function (result) {
-// 					res.redirect('/btdts');
-// 				}, function(rejectedPromiseError){
-// 					console.log(rejectedPromiseError);
-// 				});
-// 			}else{
-// 				res.send("sorry you can't delete that btdt.");
-// 			}
-// 		});
-// 	}else {
-// 		res.send("sorry you can't do that. You need to be logged in");
-// 	}
-
-// });
-
 module.exports = router;
+

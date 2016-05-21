@@ -5,8 +5,8 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
 
-var btdt = require('../models/models.js')[0];
-var User = require('../models/models.js')[1];
+
+var user = require('../models/user.js');
 
 //this is the users_controller.js file
 router.get('/users/new', function(req,res) {
