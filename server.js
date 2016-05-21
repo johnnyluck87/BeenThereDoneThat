@@ -2,8 +2,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var logger = require("morgan");
-var friends = [];
-var locString = [];
+var locArry = [];
+var yelpArr = [];
 
 
 
@@ -27,13 +27,13 @@ app.get('/', function(req, res){
 
 app.get('/yelp', function(req, res){
 
-	console.log(friends[1][0].formattedAddress, "hey")
+	console.log(locArry[1][0].formattedAddress, "hey")
 
 function yelpz(){
 var Yelp = require('yelp');
 
 var search = 'chinese';
-var place = friends[1][0].formattedAddress;
+var place = locArry[1][0].formattedAddress;
 
 
 
@@ -47,18 +47,38 @@ var yelp = new Yelp({
 });
 
 // See http://www.yelp.com/developers/documentation/v2/search_api
-yelp.search({ term: search, location: place, limit: 20 })
+yelp.search({ term: search, location: place, limit:20 })
 .then(function (data) {
   // if (data.length=2) {
      // console.log(data.businesses[0].id);
+
   // };
+  console.log(data.businesses.length)
  for (var i = 0; i < data.businesses.length; i++) {
  	if (data.businesses[i].rating > 3) {
  		console.log(data.businesses[i])
- 		res.json(data.businesses[i])
+ 		console.log([i])
+ 		var b = 0;
+ 		yelpArr.push(data.businesses[i])
  	};
+
+ 		b++;
+ 	 // console.log(data.businesses[i])
+ 	 
+ 		// res.json('d')
+ 	 
+ 	   	// 	// res.json(data.businesses[i])
+  	// 	console.log (yelpArr);
+  	// 	console.log(yelpArr.length)
+  		// res.json(yelpArr);
+ 	};
+
+ res.sendFile(process.cwd()+'/main.html')
+ 		if (b => 20) {
+ 			res.redirect('/')
+ 		};
  	
- };
+ // };
 
 
 })
@@ -92,11 +112,17 @@ app.get('/api', function(req, res){
  
 var geocoder = require('node-geocoder')(geocoderProvider, httpAdapter, extra);
 
-	geocoder.reverse({lat: friends[0].lat, lon: friends[0].lng})
+	geocoder.reverse({lat: locArry[0].lat, lon: locArry[0].lng})
     .then(function(res1) {
     	console.log(res1)
-    	res.json(res1)
-    	friends.push(res1)  
+    	var c = 0
+    	// res.json(res1)
+    	locArry.push(res1)
+    	c++;
+    	if (c > 0) {
+    		res.redirect('/yelp')
+    	};
+    	 
     })
     .catch(function(err) {
         console.log(err);
@@ -109,19 +135,18 @@ locater();
   });
 
 app.get('/api/loc', function(req, res){
-	// var everyone = req.params.friends;
-	// console.log(everyone);
-	res.json(friends);
+
+	res.json(locArry, yelpArr);
 });
 
 app.post('/api/loc', function(req, res){
 	var newPerson = req.body;
 	console.log('ayyy lmao')
 	console.log(newPerson);
-	friends.push(newPerson);
+	locArry.push(newPerson);
 	});
 
-module.exports = friends
+module.exports = locArry
 
 var port = process.env.PORT || 3000;
 app.listen(port);
