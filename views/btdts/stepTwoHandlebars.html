@@ -1,0 +1,112 @@
+
+<!-- Template For Been There Done That, for Step 2-->
+<!-- Update this based on the API -->
+<ul>
+
+<!-- update this to the respective controller -->
+  {{#each btdts}}
+    {{#if this.id}}
+     
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h3>
+				Been There, Done That!
+			</h3>
+			<div class="jumbotron">
+				<h2>
+					<!-- Example place to search was Central Park -->
+					Thanks for looking up {{#req.body.place}} We found 3 more  similar places for you!
+				</h2>
+				
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<h2>
+				 Brooklyn Park {{this.id(0)}}
+				    <!-- This would be the AJAX call to get the searches{{#if this.id}} We would need a for loop here? -->
+
+
+			</h2>
+			
+			<p>
+					<!-- this.yelpd description of the place (change this based on the field name) -->
+
+<!-- This would be the AJAX call to get the star ratings -->
+
+
+
+ <!-- This would be the AJAX call to get the snippit_text from the yelp API
+  We would need a for loop here?-->
+			 <form action="btdts/update/{{this.snippet_text}}?_method=PUT" method="POST">	
+  			{{#if this.snippet_text}}
+				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+  			</form>
+			
+			</p>
+
+<input type=button onClick="parent.location='btdts/update/{{this.URL}?_method=PUT'" value='For More info click here'>
+
+			<!-- <p>
+				<a class="btn" href="#">View details »</a>
+			</p>  -->
+			<button type="button" class="btn btn-default active">
+				Directions
+			</button>
+		</div>
+		<div class="col-md-4">
+			<h2>
+				Socrates (Astoria) Park {{this.id(1)}}
+					<!-- this.yelpname (changet this based on teh field name) -->
+			</h2>
+			<p>
+					<!-- this.yelpd desription of the place (changet this based on teh field name) -->
+					{{#if this.snippet_text}}
+				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+			</p>
+			<!-- <p>
+				<a class="btn" href="#">View details »</a>
+			</p>  -->
+	<input type=button onClick="parent.location='btdts/update/{{this.URL}?_method=PUT'" value='For More info click here'>
+
+			<button type="button" class="btn btn-default">
+				Directions
+			</button>
+		</div>
+		<div class="col-md-4">
+			<h2>
+				Washington Square Park {{this.id(2)}}
+					<!-- this.yelpname (changet this based on teh field name) -->
+			</h2>
+			<p>
+					<!-- this.yelpd desription of the place (changet this based on teh field name) -->
+				{{#if this.snippet_text}}
+				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+			</p>
+			<!-- <p>
+				<a class="btn" href="#">View details »</a>
+			</p>  -->
+		<input type=button onClick="parent.location='btdts/update/{{this.URL}?_method=PUT'" value='For More info click here'>
+		
+			<button type="button" class="btn btn-default">
+				Directions
+			</button>
+<!-- 
+			<button id='randomizeNewlistBtn'>Randomize</button>
+                    <a href="list.html"> -->
+		</div>
+	</div>
+</div>
+
+
+<!-- update the hrfe -->
+<!-- make a controller (based on whichever button person clicks) and then redirect them to step 3 in the controlelr (make a route) -->
+
+
+    {{/if}}
+  {{/each}}
+</ul>
