@@ -1,4 +1,51 @@
 <!-- Template For Been There Done That, for Step 1-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+    <button id="ro">touch</button>
+    <div id="yo">
+
+
+
+
+
+    </div>
+    <script>
+    $('#ro').hide()
+ var pos = "";
+ var arrpos = []
+        // HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+             $('#ro').show()
+            // arrpos.push(pos)
+            console.log(pos)
+            // json(arrpos)
+            var data = pos
+            // data.ready($('#ro').show())
+           // $('#yo').append('
+           //  <form action="main.html" method="get">
+           //  Last name:<br>
+           //  <input type="text" name="lastname" value=""><br><br>
+           //  <input type="submit" value="Submit">
+           //  </form>')
+              $('#ro').on('click', function(){
+                       var currentURL = window.location.origin;
+                       console.log(data)
+                      // AJAX post the data to the friends API. 
+                       $.post(currentURL + "/api/loc",data, function(data){
+                        console.log(data)
+                       alert('hello')
+                      });
+                 window.location.replace(currentURL+"/api");
+              })
+          })
+        }
+    </script>
+   
 
 
 <h1>Been There Done That!</h1>

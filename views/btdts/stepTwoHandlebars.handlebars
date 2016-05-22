@@ -1,11 +1,11 @@
 
 <!-- Template For Been There Done That, for Step 2-->
-<!-- Update this based on the API -->
+<!-- Update yelpArr based on the API -->
 <ul>
 
-<!-- update this to the respective controller -->
+<!-- update yelpArr to the respective controller -->
   {{#each btdts}}
-    {{#if this.id}}
+    {{#if yelpArr.id}}
      
 
 
@@ -27,29 +27,29 @@
 	<div class="row">
 		<div class="col-md-4">
 			<h2>
-				 Brooklyn Park {{this.id(0)}}
-				    <!-- This would be the AJAX call to get the searches{{#if this.id}} We would need a for loop here? -->
+				 Brooklyn Park {{yelpArr.id(0)}}
+				    <!-- yelpArr would be the AJAX call to get the searches{{#if yelpArr.id}} We would need a for loop here? -->
 
 
 			</h2>
 			
 			<p>
-					<!-- this.yelpd description of the place (change this based on the field name) -->
+					<!-- yelpArr.yelpd description of the place (change yelpArr based on the field name) -->
 
-<!-- This would be the AJAX call to get the star ratings -->
+<!-- yelpArr would be the AJAX call to get the star ratings -->
 
 
 
- <!-- This would be the AJAX call to get the snippit_text from the yelp API
+ <!-- yelpArr would be the AJAX call to get the snippit_text from the yelp API
   We would need a for loop here?-->
-			 <form action="btdts/update/{{this.snippet_text}}?_method=PUT" method="POST">	
-  			{{#if this.snippet_text}}
+			 <form action="btdts/update/{{yelpArr.snippet_text}}?_method=PUT" method="POST">	
+  			{{#if yelpArr.snippet_text}}
 				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
   			</form>
 			
 			</p>
 
-<input type=button onClick="parent.location='btdts/update/{{this.URL}?_method=PUT'" value='For More info click here'>
+<input type=button onClick="parent.location='btdts/update/{{yelpArr.URL}?_method=PUT'" value='For More info click here'>
 
 			<!-- <p>
 				<a class="btn" href="#">View details »</a>
@@ -60,18 +60,18 @@
 		</div>
 		<div class="col-md-4">
 			<h2>
-				Socrates (Astoria) Park {{this.id(1)}}
-					<!-- this.yelpname (changet this based on teh field name) -->
+				Socrates (Astoria) Park {{yelpArr.id(1)}}
+					<!-- yelpArr.yelpname (changet yelpArr based on teh field name) -->
 			</h2>
 			<p>
-					<!-- this.yelpd desription of the place (changet this based on teh field name) -->
-					{{#if this.snippet_text}}
+					<!-- yelpArr.yelpd desription of the place (changet yelpArr based on teh field name) -->
+					{{#if yelpArr.snippet_text}}
 				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
 			</p>
 			<!-- <p>
 				<a class="btn" href="#">View details »</a>
 			</p>  -->
-	<input type=button onClick="parent.location='btdts/update/{{this.URL}?_method=PUT'" value='For More info click here'>
+	<input type=button onClick="parent.location='btdts/update/{{yelpArr.URL}?_method=PUT'" value='For More info click here'>
 
 			<button type="button" class="btn btn-default">
 				Directions
@@ -79,18 +79,18 @@
 		</div>
 		<div class="col-md-4">
 			<h2>
-				Washington Square Park {{this.id(2)}}
-					<!-- this.yelpname (changet this based on teh field name) -->
+				Washington Square Park {{yelpArr.id(2)}}
+					<!-- yelpArr.yelpname (changet yelpArr based on teh field name) -->
 			</h2>
 			<p>
-					<!-- this.yelpd desription of the place (changet this based on teh field name) -->
-				{{#if this.snippet_text}}
+					<!-- yelpArr.yelpd desription of the place (changet yelpArr based on teh field name) -->
+				{{#if yelpArr.snippet_text}}
 				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
 			</p>
 			<!-- <p>
 				<a class="btn" href="#">View details »</a>
 			</p>  -->
-		<input type=button onClick="parent.location='btdts/update/{{this.URL}?_method=PUT'" value='For More info click here'>
+		<input type=button onClick="parent.location='btdts/update/{{yelpArr.URL}?_method=PUT'" value='For More info click here'>
 		
 			<button type="button" class="btn btn-default">
 				Directions

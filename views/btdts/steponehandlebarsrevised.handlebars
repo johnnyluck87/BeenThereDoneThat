@@ -1,0 +1,134 @@
+<!-- Template For Been There Done That, for Step 1-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+<h1>Been There Done That!</h1>
+
+{{#if username}}
+  Welcome {{username}}! Let's work on where to go.
+{{/if}}
+
+{{#unless logged_in}}
+  <p> Sign up to find out where to go next! </p>
+{{/unless}}
+
+{{#if logged_in}}
+
+
+<!-- <form class="form-horizontal" action="/search" method="GET"> -->
+<fieldset>
+
+<!-- Form Name -->
+<legend>Form Name</legend>
+
+<!-- First Question: Please type in a location-->
+
+<h2> Step 1: Please type in a location or click GPS Locate Me</h2>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="location"> Location</label>
+  <div class="col-md-4">
+
+    <input id="location" name="location" type="search" placeholder="New York, New York" class="form-control input-md">
+ 
+    <!-- How do you update the gps location box based on where someone is? For example, if they clicked GPS Locate Me it will push the search result into that box -->
+    <!-- We also need to update the AJAX Call here, so we would update correct? -->
+</div>
+</div>
+
+
+<!-- GPS Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="gpsbutton"></label>
+  <div class="col-md-4">
+    <button id="gpsbutton" name="gpsbutton" class="btn btn-primary">GPS </button>
+  </div>
+</div>
+  
+<!-- Sample AJAX -->
+<!-- Is this the correct way to update the lat and long? or should we convert this to address? We need to also put in the AJAX Call here -->
+ <form action="gpss/update/{{this.lat, this.long}}?_method=PUT" method="POST">
+
+  
+<h2> Step 2: Please select an item or type in a search category </h2>
+
+<!-- Second Question: Please select a place you want to go-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Select a place that you want to go to.</label>  
+  <div class="col-md-4">
+<div class="col-md-4">
+    <select id="selectbasic" name="selectbasic" class="form-control">
+      <option value="Bars">Bars</option>
+       <option value="Museums">Museums</option>
+      <option value="Nightlife">Nightlife</option>
+      <option value="Parks">Parks</option>
+     <option value="Restaurants">Restaurants</option>
+    </select> 
+  </div>
+</div>
+
+<!-- Search input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="searchinput">Search Input</label>
+  <div class="col-md-4">
+    <input id="searchinput" name="searchinput" type="search" placeholder="Cycling" class="form-control input-md">
+    
+  </div>
+</div>
+
+
+  <!-- Not sure how we link both AJAX together. We would update the YELP -->
+    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Let's Go</button>
+      
+ 
+
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+{{/if}}
+<script>
+    $('#gnow').hide()
+ var pos = "";
+ var arrpos = []
+        // HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+             $('#gnow').show()
+            // arrpos.push(pos)
+            console.log(pos)
+            // json(arrpos)
+            var data = pos
+            // data.ready($('#ro').show())
+           // $('#yo').append('
+           //  <form action="main.html" method="get">
+           //  Last name:<br>
+           //  <input type="text" name="lastname" value=""><br><br>
+           //  <input type="submit" value="Submit">
+           //  </form>')
+              $('#gnow').on('click', function(){
+                       var currentURL = window.location.origin;
+                       console.log(data)
+                       console.log('hey')
+                       alert('hey')
+                      AJAX post the data to the friends API. 
+                       $.post(currentURL + "/api/loc",data, function(data){
+                        console.log(data)
+                      });
+                 window.location.replace(currentURL+"/api");
+              })
+          })
+        }
+    </script>
+
+
+
+
+
+
+<!-- Suggestion: Add images here of popular places -->
+
